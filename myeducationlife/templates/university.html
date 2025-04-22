@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>MyEducationLife | {% block page_title %}university{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a href="/" class="navbar-brand">
+                <img src="{% static 'images/38.jpg' %}" alt="Cengizhan Genc Logo">
+                CengizhanGenc
+            </a>
+            <div class="social-icons d-flex align-items-center ms-auto ms-lg-5">
+                <a href="mailto:cengizhang61@gmail.com" class="text-white me-3" title="Email">
+                    <i class="fas fa-envelope fa-lg"></i>
+                </a>
+                <a href="https://wa.me/905396102361" target="_blank" class="text-white me-3" title="WhatsApp">
+                    <i class="fab fa-whatsapp fa-lg"></i>
+                </a>
+                <a href="https://www.instagram.com/cngzhngnc0561/" target="_blank" class="text-white me-3" title="Instagram">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/cengizhan-genc/" target="_blank" class="text-white" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-lg"></i>
+                </a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/myeducationlife" class="nav-link">
+                            <i class="fas fa-graduation-cap me-1"></i>My Education Life
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/myworklife" class="nav-link">
+                            <i class="fas fa-briefcase me-1"></i>My Work Life
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/mydream" class="nav-link">
+                            <i class="fas fa-cloud me-1"></i>My Dream
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> 
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <h5 class="text-primary">Education Topics</h5>
+                <div class="list-group">
+                    <a href="/myeducationlife/erasmus" class="list-group-item list-group-item-action">Erasmus+</a>
+                    <a href="/myeducationlife/university" class="list-group-item list-group-item-action">University</a>
+                    <a href="/myeducationlife/data" class="list-group-item list-group-item-action">Data</a>
+                    <a href="/myeducationlife/sports" class="list-group-item list-group-item-action">Sports</a>
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <div class="content-box">
+                    <h1 class="text-primary">University Experience</h1>
+                    
+
+                    <p>My educational journey began at Şehit Aydın Korkmaz Primary School, where I completed my elementary education. After that, I attended Suluova Şehit Metehan Atmaca Anatolian High School for my secondary education.</p> 
+                    <p>Following high school, I was admitted to Balıkesir University, where I pursued a degree in International Trade. Although I did not complete this program, it was an important stepping stone in my academic life. Later, I was accepted into Trabzon University, where I am currently studying Sports Management. As part of my university experience, I had the opportunity to participate in the Erasmus+ exchange program for two semesters at the National Sports Academy in Sofia, Bulgaria, which enriched my academic and cultural perspective.</p>
+                    <hr class="my-4">
+                    <h2 class="text-primary">🎓 University Highlights (From Admin)</h2>
+                    {% for edu in educations %}
+                    <div class="row mb-5 align-items-center">
+                        
+                        <!-- Yazı sütunu -->
+                        <div class="col-md-6">
+                            <h4 class="fw-bold">{{ item.title }}</h4>
+                            <p class="text-justify" style="word-break: break-word;">{{ item.content }}</p>
+                        </div>
+
+                        <!-- Medya sütunu -->
+                        <div class="col-md-6 text-center">
+                            {% if item.image %}
+                                <img src="{{ item.image.url }}" alt="{{ item.title }}" 
+                                    class="img-fluid rounded shadow-sm" 
+                                    style="max-height: 350px; object-fit: cover;">
+                            {% elif item.video %}
+                                <video class="w-100 rounded shadow-sm" controls 
+                                    style="max-height: 350px; object-fit: cover;">
+                                    <source src="{{ item.video.url }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                    <hr>
+                    {% endfor %}
+                    
+                    <div class="image-grid">
+                        <div class="image-card">
+                            <img src="{% static 'images/23.png' %}" alt="Transcript">
+                        </div>
+                        <div class="image-card">
+                            <img src="{% static 'images/29.png' %}" alt="Transcript">
+                        </div>
+                        <div class="image-card">
+                            <img src="{% static 'images/21.png' %}" alt="Transcript">
+                        </div>
+                        <div class="image-card">
+                            <img src="{% static 'images/20.png' %}" alt="Transcript">
+                        </div>
+                    </div>
+                    <p>In addition to my formal education, I have a strong background in sports, with 15 years of Taekwondo training and 6 years of football experience. These activities have not only shaped my physical and mental discipline but also deepened my passion for sports, which is now the focus of my academic and professional aspirations.</p>
+                    
+                    <!-- 18 ve 19 resimleri için özel stil -->
+                    <div class="image-grid">
+                        <div class="image-card">
+                            <img src="{% static 'images/18.webp' %}" alt="University Image 1" class="smaller-images">
+                        </div>
+                        <div class="image-card">
+                            <img src="{% static 'images/19.jpg' %}" alt="University Image 2" class="smaller-images">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Barcelona, Spain</span>
+            </div>
+            <div class="footer-item">
+                <i class="fas fa-phone"></i>
+                <span>+34 630 176 674</span>
+            </div>
+            <div class="footer-item">
+                <i class="fab fa-whatsapp"></i>
+                <span>+90 539 610 2361</span>
+            </div>
+            <div class="footer-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:cengizhang61@gmail.com">cengizhang61@gmail.com</a>
+            </div>
+            <div class="footer-item">
+                <i class="fab fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/cengizhan-genc/" target="_blank">LinkedIn</a>
+            </div>
+            <div class="footer-item">
+                <i class="fab fa-instagram"></i>
+                <a href="https://www.instagram.com/cngzhngnc0561/" target="_blank">Instagram</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

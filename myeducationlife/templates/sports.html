@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>MyEducationLife | {% block page_title %}Sports{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a href="/" class="navbar-brand">
+                <img src="{% static 'images/38.jpg' %}" alt="Cengizhan Genc Logo">
+                CengizhanGenc
+            </a>
+            <div class="social-icons d-flex align-items-center ms-auto ms-lg-5">
+                <a href="mailto:cengizhang61@gmail.com" class="text-white me-3" title="Email">
+                    <i class="fas fa-envelope fa-lg"></i>
+                </a>
+                <a href="https://wa.me/905396102361" target="_blank" class="text-white me-3" title="WhatsApp">
+                    <i class="fab fa-whatsapp fa-lg"></i>
+                </a>
+                <a href="https://www.instagram.com/cngzhngnc0561/" target="_blank" class="text-white me-3" title="Instagram">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/cengizhan-genc/" target="_blank" class="text-white" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-lg"></i>
+                </a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/myeducationlife" class="nav-link">
+                            <i class="fas fa-graduation-cap me-1"></i>My Education Life
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/myworklife" class="nav-link">
+                            <i class="fas fa-briefcase me-1"></i>My Work Life
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/mydream" class="nav-link">
+                            <i class="fas fa-cloud me-1"></i>My Dream
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> 
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <h5 class="text-primary">Education Topics</h5>
+                <div class="list-group">
+                    <a href="/myeducationlife/erasmus" class="list-group-item list-group-item-action">Erasmus+</a>
+                    <a href="/myeducationlife/university" class="list-group-item list-group-item-action">University</a>
+                    <a href="/myeducationlife/data" class="list-group-item list-group-item-action">Data</a>
+                    <a href="/myeducationlife/sports" class="list-group-item list-group-item-action">Sports</a>
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <div class="content-box">
+                    <h1 class="text-primary">Sports Experience</h1>
+                    <hr class="my-4">
+                    <h2 class="text-primary">🥋 Sports Highlights </h2>
+                    {% for edu in educations %}
+                    <div class="row mb-5 align-items-center">
+                        
+                        <!-- Yazı sütunu -->
+                        <div class="col-md-6">
+                            <h4 class="fw-bold">{{ item.title }}</h4>
+                            <p class="text-justify" style="word-break: break-word;">{{ item.content }}</p>
+                        </div>
+
+                        <!-- Medya sütunu -->
+                        <div class="col-md-6 text-center">
+                            {% if item.image %}
+                                <img src="{{ item.image.url }}" alt="{{ item.title }}" 
+                                    class="img-fluid rounded shadow-sm" 
+                                    style="max-height: 350px; object-fit: cover;">
+                            {% elif item.video %}
+                                <video class="w-100 rounded shadow-sm" controls 
+                                    style="max-height: 350px; object-fit: cover;">
+                                    <source src="{{ item.video.url }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                    <hr>
+                    {% endfor %}
+
+                    <p>I am a second dan black belt Taekwondo athlete with over 15 years of experience in the sport. Throughout my journey, I have participated in numerous national championships across Turkey.</p>
+                    <p>I have achieved notable rankings both at the regional and provincial levels, showcasing my dedication and competitive spirit in Taekwondo.</p>
+                    <p>My long-standing commitment to sports has also guided my academic path—I am currently a student at the Faculty of Sports Sciences, where I continue to deepen my knowledge in the field.</p>
+                    <p>Throughout my career, I have had the privilege of being trained by a highly respected coach who has served as a national team trainer. His impressive Taekwondo career and deep expertise have been a major influence in shaping my skills and discipline as an athlete.</p>
+                    <div class="image-grid">
+                        <div class="image-card">
+                            <img src="{% static 'images/56.jpg' %}" alt="Transcript">
+                        </div>
+                        <div class="image-card">
+                            <img src="{% static 'images/57.jpg' %}" alt="Transcript">
+                        </div>
+                        <div class="image-card">
+                            <img src="{% static 'images/58.jpg' %}" alt="Transcript">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Barcelona, Spain</span>
+            </div>
+            <div class="footer-item">
+                <i class="fas fa-phone"></i>
+                <span>+34 630 176 674</span>
+            </div>
+            <div class="footer-item">
+                <i class="fab fa-whatsapp"></i>
+                <span>+90 539 610 2361</span>
+            </div>
+            <div class="footer-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:cengizhang61@gmail.com">cengizhang61@gmail.com</a>
+            </div>
+            <div class="footer-item">
+                <i class="fab fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/cengizhan-genc/" target="_blank">LinkedIn</a>
+            </div>
+            <div class="footer-item">
+                <i class="fab fa-instagram"></i>
+                <a href="https://www.instagram.com/cngzhngnc0561/" target="_blank">Instagram</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
