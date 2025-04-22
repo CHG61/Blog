@@ -1,1 +1,1 @@
-web: gunicorn CengizhanBlog_CLEAN.wsgi
+web: gunicorn CengizhanGenc.wsgi
