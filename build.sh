@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-set -o errexit
 
+# Gereken Python kütüphanelerini yükler
 pip install -r requirements.txt
-python manage.py collectstatic --noinput
-python manage.py migrate
+
+# Statik dosyaları toplar (CSS, JS, görseller vs.)
+python manage.py collectstatic --no-input
