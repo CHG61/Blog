@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{%static 'css/bootstrap.min.css' %}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <title>MyEducationLife | {% block page_title %}university{% endblock %}</title>
+    <title>MyEducationLife | {% block page_title %}data{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -76,7 +76,7 @@
                     <h2 class="text-primary">🎓 University Highlights (From Admin)</h2>
                     {% for edu in educations %}
                     <div class="row mb-5 align-items-center">
-
+                        
                         <!-- Yazı sütunu -->
                         <div class="col-md-6">
                             <h4 class="fw-bold">{{ edu.title }}</h4>
@@ -85,12 +85,12 @@
 
                         <!-- Medya sütunu -->
                         <div class="col-md-6 text-center">
-                            {% if edu.image and edu.image.name %}
-                                <img src="{{ edu.image.url }}" alt="{{ edu.title }}"
-                                    class="img-fluid rounded shadow-sm"
+                            {% if edu.image %}
+                                <img src="{{ edu.image.url }}" alt="{{ edu.title }}" 
+                                    class="img-fluid rounded shadow-sm" 
                                     style="max-height: 350px; object-fit: cover;">
-                            {% elif edu.video and edu.video.name %}
-                                <video class="w-100 rounded shadow-sm" controls
+                            {% elif edu.video %}
+                                <video class="w-100 rounded shadow-sm" controls 
                                     style="max-height: 350px; object-fit: cover;">
                                     <source src="{{ edu.video.url }}" type="video/mp4">
                                     Your browser does not support the video tag.
