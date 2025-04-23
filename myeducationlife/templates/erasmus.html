@@ -90,20 +90,20 @@
                         
                         <!-- Yazı sütunu -->
                         <div class="col-md-6">
-                            <h4 class="fw-bold">{{ item.title }}</h4>
-                            <p class="text-justify" style="word-break: break-word;">{{ item.content }}</p>
+                            <h4 class="fw-bold">{{ edu.title }}</h4>
+                            <p class="text-justify" style="word-break: break-word;">{{ edu.content }}</p>
                         </div>
 
                         <!-- Medya sütunu -->
                         <div class="col-md-6 text-center">
-                            {% if item.image %}
-                                <img src="{{ item.image.url }}" alt="{{ item.title }}" 
+                            {% if edu.image %}
+                                <img src="{{ edu.image.url }}" alt="{{ edu.title }}" 
                                     class="img-fluid rounded shadow-sm" 
                                     style="max-height: 350px; object-fit: cover;">
-                            {% elif item.video %}
+                            {% elif edu.video %}
                                 <video class="w-100 rounded shadow-sm" controls 
                                     style="max-height: 350px; object-fit: cover;">
-                                    <source src="{{ item.video.url }}" type="video/mp4">
+                                    <source src="{{ edu.video.url }}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
                             {% endif %}
