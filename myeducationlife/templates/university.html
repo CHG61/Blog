@@ -76,7 +76,7 @@
                     <h2 class="text-primary">🎓 University Highlights (From Admin)</h2>
                     {% for edu in educations %}
                     <div class="row mb-5 align-items-center">
-                        
+                                                
                         <!-- Yazı sütunu -->
                         <div class="col-md-6">
                             <h4 class="fw-bold">{{ edu.title }}</h4>
@@ -85,11 +85,11 @@
 
                         <!-- Medya sütunu -->
                         <div class="col-md-6 text-center">
-                            {% if edu.image and edu.image.url %}
+                            {% if edu.image %}
                                 <img src="{{ edu.image.url }}" alt="{{ edu.title }}" 
                                     class="img-fluid rounded shadow-sm" 
                                     style="max-height: 350px; object-fit: cover;">
-                            {% elif edu.video and edu.video.url %}
+                            {% elif edu.video %}
                                 <video class="w-100 rounded shadow-sm" controls 
                                     style="max-height: 350px; object-fit: cover;">
                                     <source src="{{ edu.video.url }}" type="video/mp4">
@@ -101,6 +101,7 @@
                     </div>
                     <hr>
                     {% endfor %}
+
                     
                     <div class="image-grid">
                         <div class="image-card">
