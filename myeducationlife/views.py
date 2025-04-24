@@ -9,10 +9,6 @@ def erasmus(request):
     educations = Education.objects.filter(category='erasmus')
     return render(request, 'erasmus.html', {'educations': educations})
 
-def university(request):
-    educations = Education.objects.filter(category='university')
-    return render(request, 'university.html', {'educations': educations})
-
 def data(request):
     educations = Education.objects.filter(category='data')
     return render(request, 'data.html', {'educations': educations})

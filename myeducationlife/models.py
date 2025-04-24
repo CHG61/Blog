@@ -4,7 +4,6 @@ class Education(models.Model):
     CATEGORY_CHOICES = [
         ('general', 'General'),
         ('erasmus', 'Erasmus+'),
-        ('university', 'University'),
         ('data', 'Data'),
         ('sports', 'Sports'),
     ]
