@@ -85,17 +85,20 @@
 
                         <!-- Medya sütunu -->
                         <div class="col-md-6 text-center">
-                            {% if edu.image and edu.image.url %}
+                            {% if edu.image %}
                                 <img src="{{ edu.image.url }}" alt="{{ edu.title }}" 
                                     class="img-fluid rounded shadow-sm" 
                                     style="max-height: 350px; object-fit: cover;">
-                            {% elif edu.video and edu.video.url %}
+                            {% elif edu.video %}
                                 <video class="w-100 rounded shadow-sm" controls 
                                     style="max-height: 350px; object-fit: cover;">
                                     <source src="{{ edu.video.url }}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
+                            {% else %}
+                                <p>No media available for this item.</p>
                             {% endif %}
+
 
                         </div>
 
