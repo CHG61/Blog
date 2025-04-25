@@ -35,15 +35,24 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a href="/myeducationlife" class="nav-link">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="educationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-graduation-cap me-1"></i>My Education Life
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="educationDropdown">
+                            <li><a class="dropdown-item" href="/myeducationlife/data">Data</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/erasmus">Erasmus</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/sports">Sports</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="/myworklife" class="nav-link">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="workDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-briefcase me-1"></i>My Work Life
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="workDropdown">
+                            <li><a class="dropdown-item" href="/myworklife/dataanalyst">Data Analyst</a></li>
+                            <li><a class="dropdown-item" href="/myworklife/mycv">My CV</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="/mydream" class="nav-link">
@@ -53,142 +62,89 @@
                 </ul>
             </div>
         </div>
-    </nav> 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2">
-                <h5 class="text-primary">Education Topics</h5>
-                <div class="list-group">
-                    <a href="/myeducationlife/erasmus" class="list-group-item list-group-item-action">Erasmus+</a>
-                    <a href="/myeducationlife/data" class="list-group-item list-group-item-action">Data</a>
-                    <a href="/myeducationlife/sports" class="list-group-item list-group-item-action">Sports</a>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="content-box">
+            <h1 class="text-primary">My Training and Certifications in Software and Data Analysis</h1>
+            <hr class="my-4">
+            <h2 class="text-primary mt-4">📘 Additional Education </h2>
+            {% for edu in educations %}
+            <div class="row mb-5 align-items-center">
+                <div class="col-md-6">
+                    <h4 class="fw-bold">{{ edu.title }}</h4>
+                    <p class="text-justify" style="word-break: break-word;">{{ edu.content }}</p>
+                </div>
+                <div class="col-md-6 text-center">
+                    {% if edu.image %}
+                        <img src="{{ edu.image.url }}" alt="{{ edu.title }}" class="img-fluid rounded shadow-sm w-100" style="max-height: 350px; object-fit: cover;">
+                    {% elif edu.video %}
+                        <video class="w-100 rounded shadow-sm" controls style="max-height: 350px; object-fit: cover;">
+                            <source src="{{ edu.video.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% endif %}
                 </div>
             </div>
-            <div class="col-lg-10">
-                <div class="content-box">
-                    <h1 class="text-primary">My Training and Certifications in Software and Data Analysis</h1>
-                    <hr class="my-4">
-                    <h2 class="text-primary mt-4">📘 Additional Education </h2>
-                    {% for edu in educations %}
-                    <div class="row mb-5 align-items-center">
-                        
-                        <!-- Yazı sütunu -->
-                        <div class="col-md-6">
-                            <h4 class="fw-bold">{{ edu.title }}</h4>
-                            <p class="text-justify" style="word-break: break-word;">{{ edu.content }}</p>
-                        </div>
+            <hr>
+            {% endfor %}
 
-                        <!-- Medya sütunu -->
-                        <div class="col-md-6 text-center">
-                            {% if edu.image %}
-                                <img src="{{ edu.image.url }}" alt="{{ edu.title }}" 
-                                    class="img-fluid rounded shadow-sm" 
-                                    style="max-height: 350px; object-fit: cover;">
-                            {% elif edu.video %}
-                                <video class="w-100 rounded shadow-sm" controls 
-                                    style="max-height: 350px; object-fit: cover;">
-                                    <source src="{{ edu.video.url }}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            {% endif %}
-                        </div>
+            <p>I have been continuously improving myself in the field of software and data analysis, building a solid foundation in this area. The training and certifications I have received have enhanced both my technical skills and my competencies in the business world.</p>
 
-                    </div>
-                    <hr>
-                    {% endfor %}
-                    <p>I have been continuously improving myself in the field of software and data analysis, building a solid foundation in this area. The training and certifications I have received have enhanced both my technical skills and my competencies in the business world.</p>
-                    
-                    <h2>Technical Training and Certifications:</h2>
-                    <ul>
-                        <li><strong>Django:</strong> Web application development using Django framework.</li>
-                        <li><strong>Pandas and BeautifulSoup4:</strong> Data manipulation and web scraping.</li>
-                        <li><strong>Selenium:</strong> Web browser automation and testing.</li>
-                        <li><strong>Power BI:</strong> Data visualization and reporting.</li>
-                        <li><strong>SQL:</strong> Database management and querying.</li>
-                    </ul>
-                    <!-- Teknik resimler için grid yapısı -->
-                    <div class="image-grid">
-                        <div class="image-card">
-                            <img src="{% static 'images/7.png' %}" alt="Django">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/46.png' %}" alt="Postman">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/13.png' %}" alt="Certification">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/15.png' %}" alt="Certification">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/16.png' %}" alt="Certification">
-                        </div>
-                        <div class="image-card">    
-                            <img src="{% static 'images/8.png' %}" alt="Pandas">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/9.png' %}" alt="Selenium">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/10.png' %}" alt="Power BI">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/11.png' %}" alt="SQL">
-                        </div>
-                        <div class="image-card">       
-                            <img src="{% static 'images/12.png' %}" alt="Certification">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/14.png' %}" alt="Certification">
-                        </div>
-                    </div>
+            <h2>Technical Training and Certifications:</h2>
+            <ul>
+                <li><strong>Django:</strong> Web application development using Django framework.</li>
+                <li><strong>Pandas and BeautifulSoup4:</strong> Data manipulation and web scraping.</li>
+                <li><strong>Selenium:</strong> Web browser automation and testing.</li>
+                <li><strong>Power BI:</strong> Data visualization and reporting.</li>
+                <li><strong>SQL:</strong> Database management and querying.</li>
+            </ul>
 
-                    <h2>Business-Oriented Training and Certifications:</h2>
-                    <ul>
-                        <li><strong>Problem-Solving Techniques:</strong> Analytical thinking strategies.</li>
-                        <li><strong>Communication and Network Management:</strong> Professional networking skills.</li>
-                        <li><strong>Career Goal Setting:</strong> Effective career planning.</li>
-                        <li><strong>Presentation Techniques:</strong> Public speaking and communication.</li>
-                    </ul>
-                    <!-- İş odaklı resimler için grid yapısı -->
-                    <div class="image-grid">
-                        <div class="image-card">  
-                            <img src="{% static 'images/40.png' %}" alt="Problem Solving">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/41.png' %}" alt="Communication">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/42.png' %}" alt="Career Goals">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/43.png' %}" alt="Presentation">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/44.png' %}" alt="Certification">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/45.png' %}" alt="Certification">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/48.png' %}" alt="Certification">
-                        </div>  
-                    </div>
-
-                    <p>These certifications were obtained through <strong>BTK (Information Technologies and Communication Authority)</strong>, validating my technical and business skills.</p>
-                    
-                    <h2>Projects and Applications:</h2>
-                    <ul>
-                        <li>Developed a blog site using Django.</li>
-                        <li>Performed data extraction and analysis with Pandas and BeautifulSoup4.</li>
-                        <li>Created data visualization projects using Power BI.</li>
-                        <li>Practiced SQL database querying and management.</li>
-                    </ul>
-                    <p>These experiences support my continuous growth in software and data analysis. In the future, I aim to integrate this knowledge with sports management and business applications.</p>
-                </div>
+            <div class="image-grid">
+                <div class="image-card"><img src="{% static 'images/7.png' %}" alt="Django"></div>
+                <div class="image-card"><img src="{% static 'images/46.png' %}" alt="Postman"></div>
+                <div class="image-card"><img src="{% static 'images/13.png' %}" alt="Certification"></div>
+                <div class="image-card"><img src="{% static 'images/15.png' %}" alt="Certification"></div>
+                <div class="image-card"><img src="{% static 'images/16.png' %}" alt="Certification"></div>
+                <div class="image-card"><img src="{% static 'images/8.png' %}" alt="Pandas"></div>
+                <div class="image-card"><img src="{% static 'images/9.png' %}" alt="Selenium"></div>
+                <div class="image-card"><img src="{% static 'images/10.png' %}" alt="Power BI"></div>
+                <div class="image-card"><img src="{% static 'images/11.png' %}" alt="SQL"></div>
+                <div class="image-card"><img src="{% static 'images/12.png' %}" alt="Certification"></div>
+                <div class="image-card"><img src="{% static 'images/14.png' %}" alt="Certification"></div>
             </div>
+
+            <h2>Business-Oriented Training and Certifications:</h2>
+            <ul>
+                <li><strong>Problem-Solving Techniques:</strong> Analytical thinking strategies.</li>
+                <li><strong>Communication and Network Management:</strong> Professional networking skills.</li>
+                <li><strong>Career Goal Setting:</strong> Effective career planning.</li>
+                <li><strong>Presentation Techniques:</strong> Public speaking and communication.</li>
+            </ul>
+
+            <div class="image-grid">
+                <div class="image-card"><img src="{% static 'images/40.png' %}" alt="Problem Solving"></div>
+                <div class="image-card"><img src="{% static 'images/41.png' %}" alt="Communication"></div>
+                <div class="image-card"><img src="{% static 'images/42.png' %}" alt="Career Goals"></div>
+                <div class="image-card"><img src="{% static 'images/43.png' %}" alt="Presentation"></div>
+                <div class="image-card"><img src="{% static 'images/44.png' %}" alt="Certification"></div>
+                <div class="image-card"><img src="{% static 'images/45.png' %}" alt="Certification"></div>
+                <div class="image-card"><img src="{% static 'images/48.png' %}" alt="Certification"></div>
+            </div>
+
+            <p>These certifications were obtained through <strong>BTK (Information Technologies and Communication Authority)</strong>, validating my technical and business skills.</p>
+
+            <h2>Projects and Applications:</h2>
+            <ul>
+                <li>Developed a blog site using Django.</li>
+                <li>Performed data extraction and analysis with Pandas and BeautifulSoup4.</li>
+                <li>Created data visualization projects using Power BI.</li>
+                <li>Practiced SQL database querying and management.</li>
+            </ul>
+            <p>These experiences support my continuous growth in software and data analysis. In the future, I aim to integrate this knowledge with sports management and business applications.</p>
         </div>
     </div>
+
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-item">
@@ -217,7 +173,7 @@
             </div>
         </div>
     </footer>
-    
+
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
