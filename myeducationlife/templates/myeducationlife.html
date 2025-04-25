@@ -35,15 +35,26 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a href="/myeducationlife" class="nav-link">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="educationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-graduation-cap me-1"></i>My Education Life
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="educationDropdown">
+                            <li><a class="dropdown-item" href="/myeducationlife/myeducationlife">My Education Life</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/data">Data</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/erasmus">Erasmus</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/sports">Sports</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="/myworklife" class="nav-link">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="workDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-briefcase me-1"></i>My Work Life
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="workDropdown">
+                            <li><a class="dropdown-item" href="/myworklife/myworklife">My Work Life</a></li>
+                            <li><a class="dropdown-item" href="/myworklife/Dataanalyst">Data Analyst</a></li>
+                            <li><a class="dropdown-item" href="/myworklife/mycv">My CV</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="/mydream" class="nav-link">
@@ -53,66 +64,48 @@
                 </ul>
             </div>
         </div>
-    </nav> 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2">
-                <h5 class="text-primary">Education Topics</h5>
-                <div class="list-group">
-                    <a href="/myeducationlife/erasmus" class="list-group-item list-group-item-action">Erasmus+</a>
-                    <a href="/myeducationlife/data" class="list-group-item list-group-item-action">Data</a>
-                    <a href="/myeducationlife/sports" class="list-group-item list-group-item-action">Sports</a>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="content-box">
+            <h1 class="text-primary">My Education Life</h1>
+            <p>My educational journey began at Şehit Aydın Korkmaz Primary School, where I completed my elementary education. After that, I attended Suluova Şehit Metehan Atmaca Anatolian High School for my secondary education.</p>
+            <h2 class="text-primary">🎓 My University Journey</h2>
+            <p>Following high school, I was admitted to Balıkesir University, where I pursued a degree in International Trade. Although I did not complete this program, it was an important stepping stone in my academic life. Later, I was accepted into Trabzon University, where I am currently studying Sports Management. As part of my university experience, I had the opportunity to participate in the Erasmus+ exchange program for two semesters at the National Sports Academy in Sofia, Bulgaria, which enriched my academic and cultural perspective.</p>
+            <p>In addition to my formal education, I have a strong background in sports, with 15 years of Taekwondo training and 6 years of football experience. These activities have not only shaped my physical and mental discipline but also deepened my passion for sports, which is now the focus of my academic and professional aspirations.</p>
+            <hr class="my-4">
+            <h3 class="text-primary mt-4">📚 Highlighted Educations</h3>
+            {% for edu in educations %}
+            <div class="row mb-5 align-items-center">
+                <div class="col-md-6">
+                    <h4 class="fw-bold">{{ edu.title }}</h4>
+                    <p class="text-justify" style="word-break: break-word;">{{ edu.content }}</p>
+                </div>
+                <div class="col-md-6 text-center">
+                    {% if edu.image %}
+                        <img src="{{ edu.image.url }}" alt="{{ edu.title }}" class="img-fluid rounded shadow-sm w-100" style="max-height: 350px; object-fit: cover;">
+                    {% elif edu.video %}
+                        <video class="w-100 rounded shadow-sm" controls style="max-height: 350px; object-fit: cover;">
+                            <source src="{{ edu.video.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% endif %}
                 </div>
             </div>
-            <div class="col-lg-10">
-                <div class="content-box">
-                    <h1 class="text-primary">My Education Life</h1>
-                    <p>My educational journey began at Şehit Aydın Korkmaz Primary School, where I completed my elementary education. After that, I attended Suluova Şehit Metehan Atmaca Anatolian High School for my secondary education.</p> 
-                    <h2 class="text-primary">🎓 My University Journey</h2>
-                    <p>Following high school, I was admitted to Balıkesir University, where I pursued a degree in International Trade. Although I did not complete this program, it was an important stepping stone in my academic life. Later, I was accepted into Trabzon University, where I am currently studying Sports Management. As part of my university experience, I had the opportunity to participate in the Erasmus+ exchange program for two semesters at the National Sports Academy in Sofia, Bulgaria, which enriched my academic and cultural perspective.</p>
-                    <p>In addition to my formal education, I have a strong background in sports, with 15 years of Taekwondo training and 6 years of football experience. These activities have not only shaped my physical and mental discipline but also deepened my passion for sports, which is now the focus of my academic and professional aspirations.</p>
-                    <hr class="my-4">
-                    <h3 class="text-primary mt-4">📚 Highlighted Educations</h3>
-                    {% for edu in educations %}
-                    <div class="row mb-5 align-items-center">
-                        
-                        <!-- Yazı sütunu -->
-                        <div class="col-md-6">
-                            <h4 class="fw-bold">{{ edu.title }}</h4>
-                            <p class="text-justify" style="word-break: break-word;">{{ edu.content }}</p>
-                        </div>
+            <hr>
+            {% endfor %}
 
-                        <!-- Medya sütunu -->
-                        <div class="col-md-6 text-center">
-                            {% if edu.image %}
-                                <img src="{{ edu.image.url }}" alt="{{ edu.title }}" 
-                                    class="img-fluid rounded shadow-sm" 
-                                    style="max-height: 350px; object-fit: cover;">
-                            {% elif edu.video %}
-                                <video class="w-100 rounded shadow-sm" controls 
-                                    style="max-height: 350px; object-fit: cover;">
-                                    <source src="{{ edu.video.url }}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            {% endif %}
-                        </div>
-
-                    </div>
-                    <hr>
-                    {% endfor %}
-                    
-                    <div class="image-grid">
-                        <div class="image-card">
-                            <img src="{% static 'images/18.webp' %}" alt="Dream Image 1">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/19.jpg' %}" alt="Dream Image 1">
-                        </div>
-                    </div>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="{% static 'images/18.webp' %}" alt="Dream Image 1">
+                </div>
+                <div class="image-card">
+                    <img src="{% static 'images/19.jpg' %}" alt="Dream Image 1">
                 </div>
             </div>
         </div>
     </div>
+
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-item">
@@ -141,7 +134,7 @@
             </div>
         </div>
     </footer>
-    
+
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
