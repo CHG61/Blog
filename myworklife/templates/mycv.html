@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <title>MyWorkLife {% block page_title %}{% endblock %}</title>
+    <title>My Work Life | My CV</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a href="/" class="navbar-brand">
@@ -17,125 +18,93 @@
                 CengizhanGenc
             </a>
             <div class="social-icons d-flex align-items-center ms-auto ms-lg-5">
-                <a href="mailto:cengizhang61@gmail.com" class="text-white me-3" title="Email">
-                    <i class="fas fa-envelope fa-lg"></i>
-                </a>
-                <a href="https://wa.me/905396102361" target="_blank" class="text-white me-3" title="WhatsApp">
-                    <i class="fab fa-whatsapp fa-lg"></i>
-                </a>
-                <a href="https://www.instagram.com/cngzhngnc0561/" target="_blank" class="text-white me-3" title="Instagram">
-                    <i class="fab fa-instagram fa-lg"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/cengizhan-genc/" target="_blank" class="text-white" title="LinkedIn">
-                    <i class="fab fa-linkedin fa-lg"></i>
-                </a>
+                <a href="mailto:cengizhang61@gmail.com" class="text-white me-3" title="Email"><i class="fas fa-envelope fa-lg"></i></a>
+                <a href="https://wa.me/905396102361" target="_blank" class="text-white me-3" title="WhatsApp"><i class="fab fa-whatsapp fa-lg"></i></a>
+                <a href="https://www.instagram.com/cngzhngnc0561/" target="_blank" class="text-white me-3" title="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="https://www.linkedin.com/in/cengizhan-genc/" target="_blank" class="text-white" title="LinkedIn"><i class="fab fa-linkedin fa-lg"></i></a>
             </div>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a href="/myeducationlife" class="nav-link">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="educationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-graduation-cap me-1"></i>My Education Life
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="educationDropdown">
+                            <li><a class="dropdown-item" href="/myeducationlife">My Education Life</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/data">Data</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/erasmus">Erasmus</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/sports">Sports</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="/myworklife" class="nav-link">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="workDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-briefcase me-1"></i>My Work Life
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="workDropdown">
+                            <li><a class="dropdown-item" href="/myworklife">My Work Life</a></li>
+                            <li><a class="dropdown-item" href="/myworklife/Dataanalyst">Data Analyst</a></li>
+                            <li><a class="dropdown-item" href="/myworklife/mycv">My CV</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="/mydream" class="nav-link">
-                            <i class="fas fa-cloud me-1"></i>My Dream
-                        </a>
+                        <a href="/mydream" class="nav-link"><i class="fas fa-cloud me-1"></i>My Dream</a>
                     </li>
                 </ul>
             </div>
         </div>
-    </nav> 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2">
-                <div class="list-group">
-                    <a href="/myworklife/mycv" class="list-group-item list-group-item-action">My CV</a>
-                    <a href="/myworklife/Dataanalyst" class="list-group-item list-group-item-action">Data Analyst</a>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="content-box">
+            <h1 class="text-primary">📁 My CV Highlights</h1>
+            <hr class="my-4">
+
+            {% for item in cvs %}
+            <div class="row mb-5 align-items-center">
+                <div class="col-md-6">
+                    <h4 class="fw-bold">{{ item.title }}</h4>
+                    <p class="text-justify" style="word-break: break-word;">{{ item.content }}</p>
+                </div>
+                <div class="col-md-6 text-center">
+                    {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}" class="img-fluid rounded shadow-sm w-100" style="max-height: 350px; object-fit: cover;">
+                    {% elif item.video %}
+                        <video class="w-100 rounded shadow-sm" controls style="max-height: 350px; object-fit: cover;">
+                            <source src="{{ item.video.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% endif %}
                 </div>
             </div>
-            <div class="col-lg-10">
-                <div class="content-box">
-                    <hr class="my-4">
-                    <h2 class="text-primary">📁 Highlights from Admin</h2>
-                    {% for item in cvs %}
-                    <div class="row mb-5 align-items-center">
-                        
-                        <!-- Yazı sütunu -->
-                        <div class="col-md-6">
-                            <h4 class="fw-bold">{{ item.title }}</h4>
-                            <p class="text-justify" style="word-break: break-word;">{{ item.content }}</p>
-                        </div>
+            <hr>
+            {% endfor %}
 
-                        <!-- Medya sütunu -->
-                        <div class="col-md-6 text-center">
-                            {% if item.image %}
-                                <img src="{{ item.image.url }}" alt="{{ item.title }}" 
-                                    class="img-fluid rounded shadow-sm" 
-                                    style="max-height: 350px; object-fit: cover;">
-                            {% elif item.video %}
-                                <video class="w-100 rounded shadow-sm" controls 
-                                    style="max-height: 350px; object-fit: cover;">
-                                    <source src="{{ item.video.url }}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            {% endif %}
-                        </div>
-
-                    </div>
-                    <hr>
-                    {% endfor %}
-
-
-                    <div class="image-grid">
-                        <div class="image-card">
-                            <img src="{% static 'images/47.png' %}" alt="Dream Image 1">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/6.png' %}" alt="Dream Image 2">
-                        </div>
-                    </div>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="{% static 'images/47.png' %}" alt="CV Image 1">
+                </div>
+                <div class="image-card">
+                    <img src="{% static 'images/6.png' %}" alt="CV Image 2">
                 </div>
             </div>
         </div>
     </div>
-    <footer class="footer">
+
+    <footer class="footer mt-5">
         <div class="footer-content">
-            <div class="footer-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Barcelona, Spain</span>
-            </div>
-            <div class="footer-item">
-                <i class="fas fa-phone"></i>
-                <span>+34 630 176 674</span>
-            </div>
-            <div class="footer-item">
-                <i class="fab fa-whatsapp"></i>
-                <span>+90 539 610 2361</span>
-            </div>
-            <div class="footer-item">
-                <i class="fas fa-envelope"></i>
-                <a href="mailto:cengizhang61@gmail.com">cengizhang61@gmail.com</a>
-            </div>
-            <div class="footer-item">
-                <i class="fab fa-linkedin"></i>
-                <a href="https://www.linkedin.com/in/cengizhan-genc/" target="_blank">LinkedIn</a>
-            </div>
-            <div class="footer-item">
-                <i class="fab fa-instagram"></i>
-                <a href="https://www.instagram.com/cngzhngnc0561/" target="_blank">Instagram</a>
-            </div>
+            <div class="footer-item"><i class="fas fa-map-marker-alt"></i><span>Barcelona, Spain</span></div>
+            <div class="footer-item"><i class="fas fa-phone"></i><span>+34 630 176 674</span></div>
+            <div class="footer-item"><i class="fab fa-whatsapp"></i><span>+90 539 610 2361</span></div>
+            <div class="footer-item"><i class="fas fa-envelope"></i><a href="mailto:cengizhang61@gmail.com">cengizhang61@gmail.com</a></div>
+            <div class="footer-item"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/cengizhan-genc/" target="_blank">LinkedIn</a></div>
+            <div class="footer-item"><i class="fab fa-instagram"></i><a href="https://www.instagram.com/cngzhngnc0561/" target="_blank">Instagram</a></div>
         </div>
     </footer>
-    
+
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
