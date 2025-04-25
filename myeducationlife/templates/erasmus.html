@@ -35,15 +35,26 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a href="/myeducationlife" class="nav-link">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="educationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-graduation-cap me-1"></i>My Education Life
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="educationDropdown">
+                            <li><a class="dropdown-item" href="/myeducationlife/myeducationlife">My Education Life</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/data">Data</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/erasmus">Erasmus</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/sports">Sports</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="/myworklife" class="nav-link">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="workDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-briefcase me-1"></i>My Work Life
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="workDropdown">
+                            <li><a class="dropdown-item" href="/myworklife/myworklife">My Work Life</a></li>
+                            <li><a class="dropdown-item" href="/myworklife/Dataanalyst">Data Analyst</a></li>
+                            <li><a class="dropdown-item" href="/myworklife/mycv">My CV</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="/mydream" class="nav-link">
