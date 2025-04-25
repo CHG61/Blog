@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <title>MyDream {% block page_title %}{% endblock %}</title>
+    <title>My Dream</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a href="/" class="navbar-brand">
@@ -17,158 +18,122 @@
                 CengizhanGenc
             </a>
             <div class="social-icons d-flex align-items-center ms-auto ms-lg-5">
-                <a href="mailto:cengizhang61@gmail.com" class="text-white me-3" title="Email">
-                    <i class="fas fa-envelope fa-lg"></i>
-                </a>
-                <a href="https://wa.me/905396102361" target="_blank" class="text-white me-3" title="WhatsApp">
-                    <i class="fab fa-whatsapp fa-lg"></i>
-                </a>
-                <a href="https://www.instagram.com/cngzhngnc0561/" target="_blank" class="text-white me-3" title="Instagram">
-                    <i class="fab fa-instagram fa-lg"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/cengizhan-genc/" target="_blank" class="text-white" title="LinkedIn">
-                    <i class="fab fa-linkedin fa-lg"></i>
-                </a>
+                <a href="mailto:cengizhang61@gmail.com" class="text-white me-3" title="Email"><i class="fas fa-envelope fa-lg"></i></a>
+                <a href="https://wa.me/905396102361" target="_blank" class="text-white me-3" title="WhatsApp"><i class="fab fa-whatsapp fa-lg"></i></a>
+                <a href="https://www.instagram.com/cngzhngnc0561/" target="_blank" class="text-white me-3" title="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="https://www.linkedin.com/in/cengizhan-genc/" target="_blank" class="text-white" title="LinkedIn"><i class="fab fa-linkedin fa-lg"></i></a>
             </div>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a href="/myeducationlife" class="nav-link">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="educationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-graduation-cap me-1"></i>My Education Life
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="educationDropdown">
+                            <li><a class="dropdown-item" href="/myeducationlife">My Education Life</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/data">Data</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/erasmus">Erasmus</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/sports">Sports</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="/myworklife" class="nav-link">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="workDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-briefcase me-1"></i>My Work Life
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="workDropdown">
+                            <li><a class="dropdown-item" href="/myworklife">My Work Life</a></li>
+                            <li><a class="dropdown-item" href="/myworklife/Dataanalyst">Data Analyst</a></li>
+                            <li><a class="dropdown-item" href="/myworklife/mycv">My CV</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="/mydream" class="nav-link">
-                            <i class="fas fa-cloud me-1"></i>My Dream
-                        </a>
+                        <a href="/mydream" class="nav-link"><i class="fas fa-cloud me-1"></i>My Dream</a>
                     </li>
                 </ul>
             </div>
         </div>
-    </nav> 
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="content-box">
-                    <h1><i class="fas fa-cloud"></i> My Dream</h1>
-                    
-                    <div class="dream-quote">
-                        "Dreams are the seeds of change. Nothing ever grows without a seed, and nothing ever changes without a dream."
-                    </div>
-                    
-                    <!-- Dreams from admin panel -->
-                    <h2><i class="fas fa-star"></i> My Dream Goals</h2>
-                    <div class="dream-grid">
-                        {% for dream in dreams %}
-                        <div class="row mb-5 align-items-center">
-                        
-                            <!-- Yazı sütunu -->
-                            <div class="col-md-6">
-                                <h4 class="fw-bold">{{ item.title }}</h4>
-                                <p class="text-justify" style="word-break: break-word;">{{ item.content }}</p>
-                            </div>
-    
-                            <!-- Medya sütunu -->
-                            <div class="col-md-6 text-center">
-                                {% if item.image %}
-                                    <img src="{{ item.image.url }}" alt="{{ item.title }}" 
-                                        class="img-fluid rounded shadow-sm" 
-                                        style="max-height: 350px; object-fit: cover;">
-                                {% elif item.video %}
-                                    <video class="w-100 rounded shadow-sm" controls 
-                                        style="max-height: 350px; object-fit: cover;">
-                                        <source src="{{ item.video.url }}" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                {% endif %}
-                            </div>
-    
-                        </div>
-                        <hr>
-                        {% endfor %}
+    </nav>
 
-                    </div>
-                    
-                    <!-- Main dream content -->
-                    <div class="text-content">
-                        <p>My dream is to start earning money as a freelancer using my software skills, and then further develop myself in mobile application development and machine learning. During this process, I want to take advantage of the flexibility that freelancing offers to travel the world, meet people from different cultures, and enrich my experiences.</p>
-                        <div class="image-grid">
-                            <div class="image-card">
-                                <img src="{% static 'images/36.jpg' %}" alt="Freelancing Dream" class="inline-image">
-                            </div>
-                        </div>
-                        <p>After completing my training in machine learning and mobile app development, I aim to establish my own mobile application and AI company and grow in this field. I envision creating innovative solutions that make people's lives easier while working with a talented team that shares my passion for technology.</p>
-                        
-                        <div class="image-grid">
-                            <div class="image-card">
-                                <img src="{% static 'images/35.jpg' %}" alt="Tech Company Vision">
-                            </div>
-                            <div class="image-card">
-                                <img src="{% static 'images/34.jpg' %}" alt="AI Development">
-                            </div>
-                        </div>
+    <div class="container mt-5">
+        <div class="content-box">
+            <h1><i class="fas fa-cloud"></i> My Dream</h1>
 
-                        <p>If I am fortunate enough to achieve financial success in this life, I dream of buying an island and creating a community of around a thousand people, including my friends and their friends. This island will be a place where everyone knows each other, feels safe, and lives without risks. It will be a community where everyone shares a common purpose and lives in harmony.</p>
-                        
-                        <p>There, I want to continue my life surrounded by nature, in peace and happiness. This dream is not just about a lifestyle but also about creating a community where people are connected, and trust and solidarity are at the forefront. On this island, I envision a life where technology and nature coexist in harmony, and everyone can express themselves freely.</p>
-                    </div>
-                    
-                    <!-- Additional dream images -->
-                    <h2><i class="fas fa-images"></i> Dream Visualizations</h2>
-                    <div class="image-grid">
-                        <div class="image-card">
-                            <img src="{% static 'images/4.jpg' %}" alt="Island Community">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/31.jpg' %}" alt="Sustainable Living">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/32.jpg' %}" alt="Harmonious Technology">
-                        </div>
-                    </div>
+            <div class="dream-quote mb-4">
+                <em>"Dreams are the seeds of change. Nothing ever grows without a seed, and nothing ever changes without a dream."</em>
+            </div>
+
+            <h2><i class="fas fa-star"></i> My Dream Goals</h2>
+
+            {% for dream in dreams %}
+            <div class="row mb-5 align-items-center">
+                <div class="col-md-6">
+                    <h4 class="fw-bold">{{ dream.title }}</h4>
+                    <p class="text-justify" style="word-break: break-word;">{{ dream.content }}</p>
+                </div>
+                <div class="col-md-6 text-center">
+                    {% if dream.image %}
+                        <img src="{{ dream.image.url }}" alt="{{ dream.title }}" class="img-fluid rounded shadow-sm w-100" style="max-height: 350px; object-fit: cover;">
+                    {% elif dream.video %}
+                        <video class="w-100 rounded shadow-sm" controls style="max-height: 350px; object-fit: cover;">
+                            <source src="{{ dream.video.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% endif %}
+                </div>
+            </div>
+            <hr>
+            {% endfor %}
+
+            <p>My dream is to start earning money as a freelancer using my software skills, and then further develop myself in mobile application development and machine learning.</p>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="{% static 'images/36.jpg' %}" alt="Freelancing Dream">
+                </div>
+            </div>
+
+            <p>After completing my training in machine learning and mobile app development, I aim to establish my own mobile application and AI company and grow in this field.</p>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="{% static 'images/35.jpg' %}" alt="Tech Company Vision">
+                </div>
+                <div class="image-card">
+                    <img src="{% static 'images/34.jpg' %}" alt="AI Development">
+                </div>
+            </div>
+
+            <p>If I achieve financial success, I dream of buying an island and creating a peaceful, sustainable community of around a thousand people including friends and family.</p>
+            <p>On this island, technology and nature will live in harmony. People will feel safe, connected, and free to express themselves.</p>
+
+            <h2><i class="fas fa-images"></i> Dream Visualizations</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="{% static 'images/4.jpg' %}" alt="Island Community">
+                </div>
+                <div class="image-card">
+                    <img src="{% static 'images/31.jpg' %}" alt="Sustainable Living">
+                </div>
+                <div class="image-card">
+                    <img src="{% static 'images/32.jpg' %}" alt="Harmonious Technology">
                 </div>
             </div>
         </div>
     </div>
-    
-    <footer class="footer">
+
+    <footer class="footer mt-5">
         <div class="footer-content">
-            <div class="footer-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Barcelona, Spain</span>
-            </div>
-            <div class="footer-item">
-                <i class="fas fa-phone"></i>
-                <span>+34 630 176 674</span>
-            </div>
-            <div class="footer-item">
-                <i class="fab fa-whatsapp"></i>
-                <span>+90 539 610 2361</span>
-            </div>
-            <div class="footer-item">
-                <i class="fas fa-envelope"></i>
-                <a href="mailto:cengizhang61@gmail.com">cengizhang61@gmail.com</a>
-            </div>
-            <div class="footer-item">
-                <i class="fab fa-linkedin"></i>
-                <a href="https://www.linkedin.com/in/cengizhan-genc/" target="_blank">LinkedIn</a>
-            </div>
-            <div class="footer-item">
-                <i class="fab fa-instagram"></i>
-                <a href="https://www.instagram.com/cngzhngnc0561/" target="_blank">Instagram</a>
-            </div>
+            <div class="footer-item"><i class="fas fa-map-marker-alt"></i><span>Barcelona, Spain</span></div>
+            <div class="footer-item"><i class="fas fa-phone"></i><span>+34 630 176 674</span></div>
+            <div class="footer-item"><i class="fab fa-whatsapp"></i><span>+90 539 610 2361</span></div>
+            <div class="footer-item"><i class="fas fa-envelope"></i><a href="mailto:cengizhang61@gmail.com">cengizhang61@gmail.com</a></div>
+            <div class="footer-item"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/cengizhan-genc/" target="_blank">LinkedIn</a></div>
+            <div class="footer-item"><i class="fab fa-instagram"></i><a href="https://www.instagram.com/cngzhngnc0561/" target="_blank">Instagram</a></div>
         </div>
     </footer>
-    
+
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
