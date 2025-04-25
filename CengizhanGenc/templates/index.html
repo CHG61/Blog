@@ -30,16 +30,21 @@
                     <i class="fab fa-linkedin fa-lg"></i>
                 </a>
             </div>
-            
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a href="/myeducationlife" class="nav-link">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="educationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-graduation-cap me-1"></i>My Education Life
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="educationDropdown">
+                            <li><a class="dropdown-item" href="/myeducationlife/data">Data</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/erasmus">Erasmus</a></li>
+                            <li><a class="dropdown-item" href="/myeducationlife/sports">Sports</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="/myworklife" class="nav-link">
@@ -54,71 +59,65 @@
                 </ul>
             </div>
         </div>
-    </nav> 
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="content-box">
-                    <h1>Who is Cengizhan?</h1>
+    </nav>
 
-                    <p>Hello,</p>
-                    <p>My name is Cengizhan. Owner and creator of this web-site. I was born in Suluova, Amasya, Turkey, on November 7, 1996. I am the youngest of seven siblings in my family. My father is a retired contractor, and my mother is a homemaker. Originally, we are from Trabzon. I am a fun-loving and humorous person. In my free time, I enjoy playing the guitar, spending time with friends, going for walks, listening to music, and exercising. Sports are something I am truly passionate about—I have practiced Taekwondo professionally and played football as an amateur. Currently, I am studying Sports Management at Trabzon University.</p> 
-                    
-                    <p>Before this, I attended Balıkesir University, where I studied International Trade, but I did not complete the program. Later, I was accepted into Trabzon University's Sports Management program, which I am currently pursuing. I also spent two semesters at the National Sports Academy in Sofia, Bulgaria, as part of the Erasmus+ exchange program. Now, I live in Barcelona with my wife, who is from Ecuador.</p>
-                    <p>I have many memories from my past and look forward to creating many more in the future. To immortalize these experiences, I designed this website. I am an active and dynamic individual, and as I've described, I strive to live life to the fullest, embracing every opportunity with enthusiasm.</p>
-                    
-                    <div class="highlight-box">
-                        <h2><i class="fas fa-star emoji"></i>Cengizhan's Highlights</h2>
-                        {% for item in highlights %}
-                        <div class="row mb-5 align-items-center">
-                        
-                            <!-- Yazı sütunu -->
-                            <div class="col-md-6">
-                                <h4 class="fw-bold">{{ item.title }}</h4>
-                                <p class="text-justify" style="word-break: break-word;">{{ item.content }}</p>
-                            </div>
-    
-                            <!-- Medya sütunu -->
-                            <div class="col-md-6 text-center">
-                                {% if item.image %}
-                                    <img src="{{ item.image.url }}" alt="{{ item.title }}" 
-                                        class="img-fluid rounded shadow-sm" 
-                                        style="max-height: 350px; object-fit: cover;">
-                                {% elif item.video %}
-                                    <video class="w-100 rounded shadow-sm" controls 
-                                        style="max-height: 350px; object-fit: cover;">
-                                        <source src="{{ item.video.url }}" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                {% endif %}
-                            </div>
-    
-                        </div>
-                        <hr>
-                        {% endfor %}
+    <div class="container mt-5">
+        <div class="content-box">
+            <h1>Who is Cengizhan?</h1>
+
+            <p>Hello,</p>
+            <p>My name is Cengizhan. Owner and creator of this web-site. I was born in Suluova, Amasya, Turkey, on November 7, 1996. I am the youngest of seven siblings in my family. My father is a retired contractor, and my mother is a homemaker. Originally, we are from Trabzon. I am a fun-loving and humorous person. In my free time, I enjoy playing the guitar, spending time with friends, going for walks, listening to music, and exercising. Sports are something I am truly passionate about—I have practiced Taekwondo professionally and played football as an amateur. Currently, I am studying Sports Management at Trabzon University.</p>
+
+            <p>Before this, I attended Balıkesir University, where I studied International Trade, but I did not complete the program. Later, I was accepted into Trabzon University's Sports Management program, which I am currently pursuing. I also spent two semesters at the National Sports Academy in Sofia, Bulgaria, as part of the Erasmus+ exchange program. Now, I live in Barcelona with my wife, who is from Ecuador.</p>
+            <p>I have many memories from my past and look forward to creating many more in the future. To immortalize these experiences, I designed this website. I am an active and dynamic individual, and as I've described, I strive to live life to the fullest, embracing every opportunity with enthusiasm.</p>
+
+            <div class="highlight-box">
+                <h2><i class="fas fa-star emoji"></i>Cengizhan's Highlights</h2>
+                {% for item in highlights %}
+                <div class="row mb-5 align-items-center">
+
+                    <!-- Yazı sütunu -->
+                    <div class="col-md-6">
+                        <h4 class="fw-bold">{{ item.title }}</h4>
+                        <p class="text-justify" style="word-break: break-word;">{{ item.content }}</p>
                     </div>
 
-                    <div class="image-grid">
-                        <div class="image-card">
-                            <img src="{% static 'images/33.jpg' %}" alt="Cengizhan">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/5.jpg' %}" alt="Cengizhan">
-                        </div>
-                        <div class="image-card">
-                            <img src="{% static 'images/2.jpg' %}" alt="Cengizhan">
-                        </div>
+                    <!-- Medya sütunu -->
+                    <div class="col-md-6 text-center">
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}" 
+                                class="img-fluid rounded shadow-sm" 
+                                style="max-height: 350px; object-fit: cover;">
+                        {% elif item.video %}
+                            <video class="w-100 rounded shadow-sm" controls 
+                                style="max-height: 350px; object-fit: cover;">
+                                <source src="{{ item.video.url }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        {% endif %}
                     </div>
-                    
-                    <img src="{% static 'images/37.jpg' %}" alt="Cengizhan" class="hero-image">
-                    
-                    
+
+                </div>
+                <hr>
+                {% endfor %}
+            </div>
+
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="{% static 'images/33.jpg' %}" alt="Cengizhan">
+                </div>
+                <div class="image-card">
+                    <img src="{% static 'images/5.jpg' %}" alt="Cengizhan">
+                </div>
+                <div class="image-card">
+                    <img src="{% static 'images/2.jpg' %}" alt="Cengizhan">
                 </div>
             </div>
+
+            <img src="{% static 'images/37.jpg' %}" alt="Cengizhan" class="hero-image">
         </div>
     </div>
-    
+
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-item">
@@ -147,7 +146,7 @@
             </div>
         </div>
     </footer>
-    
+
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
